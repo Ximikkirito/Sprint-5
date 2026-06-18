@@ -8,7 +8,6 @@ from locators.locators import (
 EMAIL = "your_test_user@mail.ru"
 PASSWORD = "Password123"
 
-
 def login(driver):
 
     driver.find_element(
