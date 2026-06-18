@@ -3,128 +3,134 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
 
-    # Кнопка Войти в аккаунт
+    # Главная страница
     LOGIN_BUTTON = (
         By.XPATH,
         "//button[text()='Войти в аккаунт']"
     )
 
-    # Личный кабинет
     PERSONAL_ACCOUNT_BUTTON = (
         By.XPATH,
         "//p[text()='Личный Кабинет']"
     )
 
-    # Конструктор
     CONSTRUCTOR_BUTTON = (
         By.XPATH,
         "//p[text()='Конструктор']"
     )
 
-    # Логотип
     LOGO = (
         By.CSS_SELECTOR,
         "div[class*='AppHeader_header__logo']"
     )
 
-    # Булки
+    # Вкладки конструктора
     BUNS_TAB = (
         By.XPATH,
         "//span[text()='Булки']"
     )
 
-    # Соусы
     SAUCES_TAB = (
         By.XPATH,
         "//span[text()='Соусы']"
     )
 
-    # Начинки
     FILLINGS_TAB = (
         By.XPATH,
         "//span[text()='Начинки']"
     )
 
+    # Активные вкладки (для проверок current)
+    CURRENT_BUNS_TAB = (
+        By.XPATH,
+        "//div[contains(@class,'tab_tab_type_current')]//span[text()='Булки']"
+    )
+
+    CURRENT_SAUCES_TAB = (
+        By.XPATH,
+        "//div[contains(@class,'tab_tab_type_current')]//span[text()='Соусы']"
+    )
+
+    CURRENT_FILLINGS_TAB = (
+        By.XPATH,
+        "//div[contains(@class,'tab_tab_type_current')]//span[text()='Начинки']"
+    )
+
 
 class LoginPageLocators:
 
-    # Email
+    # Поля авторизации
     EMAIL_INPUT = (
         By.XPATH,
         "//label[text()='Email']/following-sibling::input"
     )
 
-    # Пароль
     PASSWORD_INPUT = (
         By.XPATH,
-        "//label[text()='Пароль']/following-sibling::input"
+        "//input[@type='password']"
     )
 
-    # Войти
+    # Кнопки и ссылки
     LOGIN_SUBMIT_BUTTON = (
         By.XPATH,
         "//button[text()='Войти']"
     )
 
-    # Регистрация
     REGISTER_LINK = (
-        By.XPATH,
-        "//a[@href='/register']"
+        By.CSS_SELECTOR,
+        "a[href='/register']"
     )
 
-    # Восстановить пароль
     FORGOT_PASSWORD_LINK = (
-        By.XPATH,
-        "//a[@href='/forgot-password']"
+        By.CSS_SELECTOR,
+        "a[href='/forgot-password']"
     )
 
 
 class RegisterPageLocators:
 
-    # Имя
+    # Поля регистрации
     NAME_INPUT = (
         By.XPATH,
         "//label[text()='Имя']/following-sibling::input"
     )
 
-    # Email
     EMAIL_INPUT = (
         By.XPATH,
         "//label[text()='Email']/following-sibling::input"
     )
 
-    # Пароль
     PASSWORD_INPUT = (
         By.XPATH,
-        "//label[text()='Пароль']/following-sibling::input"
+        "//input[@type='password']"
     )
 
-    # Зарегистрироваться
+    # Кнопки и ссылки
     REGISTER_BUTTON = (
         By.XPATH,
         "//button[text()='Зарегистрироваться']"
     )
 
-    # Некорректный пароль
+    LOGIN_LINK = (
+        By.CSS_SELECTOR,
+        "a[href='/login']"
+    )
+
+    FORGOT_PASSWORD_LINK = (
+        By.CSS_SELECTOR,
+        "a[href='/forgot-password']"
+    )
+
+    # Сообщение об ошибке
     INCORRECT_PASSWORD = (
         By.XPATH,
         "//*[contains(text(),'Некорректный пароль')]"
     )
 
-    # Войти
-    LOGIN_LINK = (
-        By.XPATH,
-        "//a[@href='/login']"
-    )
-    # Восстановить пароль
-    FORGOT_PASSWORD_LINK = (
-        By.XPATH,
-        "//a[@href='/forgot-password']"
-    )
 
 class AccountPageLocators:
 
-    # Выход
+    # Личный кабинет
     LOGOUT_BUTTON = (
         By.XPATH,
         "//button[text()='Выход']"

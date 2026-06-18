@@ -24,53 +24,52 @@ def login(driver):
     ).click()
 
 
-def test_login_from_main_page(driver):
+class TestLogin:
 
-    driver.get(BASE_URL)
+    def test_login_from_main_page(self, driver):
 
-    driver.find_element(
-        *MainPageLocators.LOGIN_BUTTON
-    ).click()
+        driver.get(BASE_URL)
 
-    login(driver)
+        driver.find_element(
+            *MainPageLocators.LOGIN_BUTTON
+        ).click()
 
-    assert "login" not in driver.current_url
+        login(driver)
 
+        assert "login" not in driver.current_url
 
-def test_login_from_personal_account(driver):
+    def test_login_from_personal_account(self, driver):
 
-    driver.get(BASE_URL)
+        driver.get(BASE_URL)
 
-    driver.find_element(
-        *MainPageLocators.PERSONAL_ACCOUNT_BUTTON
-    ).click()
+        driver.find_element(
+            *MainPageLocators.PERSONAL_ACCOUNT_BUTTON
+        ).click()
 
-    login(driver)
+        login(driver)
 
-    assert "login" not in driver.current_url
+        assert "login" not in driver.current_url
 
+    def test_login_from_register_page(self, driver):
 
-def test_login_from_register_page(driver):
+        driver.get(f"{BASE_URL}/register")
 
-    driver.get(f"{BASE_URL}/register")
+        driver.find_element(
+            *LoginPageLocators.REGISTER_LINK
+        ).click()
 
-    driver.find_element(
-        *LoginPageLocators.REGISTER_LINK
-    ).click()
+        login(driver)
 
-    login(driver)
+        assert "login" not in driver.current_url
 
-    assert "login" not in driver.current_url
+    def test_login_from_forgot_password_page(self, driver):
 
+        driver.get(f"{BASE_URL}/forgot-password")
 
-def test_login_from_forgot_password_page(driver):
+        driver.find_element(
+            *LoginPageLocators.FORGOT_PASSWORD_LINK
+        ).click()
 
-    driver.get(f"{BASE_URL}/forgot-password")
+        login(driver)
 
-    driver.find_element(
-        *LoginPageLocators.FORGOT_PASSWORD_LINK
-    ).click()
-
-    login(driver)
-
-    assert "login" not in driver.current_url
+        assert "login" not in driver.current_url

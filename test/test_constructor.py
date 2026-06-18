@@ -3,56 +3,64 @@ from data.urls import BASE_URL
 from locators.locators import MainPageLocators
 
 
-def test_open_constructor_button(driver):
+class TestConstructor:
 
-    driver.get(BASE_URL)
+    def test_open_constructor_button(self, driver):
 
-    driver.find_element(
-        *MainPageLocators.CONSTRUCTOR_BUTTON
-    ).click()
+        driver.get(BASE_URL)
 
-    assert driver.current_url == BASE_URL + "/"
+        driver.find_element(
+            *MainPageLocators.CONSTRUCTOR_BUTTON
+        ).click()
 
+        assert driver.current_url == BASE_URL + "/"
 
-def test_open_constructor_logo(driver):
+    def test_open_constructor_logo(self, driver):
 
-    driver.get(BASE_URL)
+        driver.get(BASE_URL)
 
-    driver.find_element(
-        *MainPageLocators.LOGO
-    ).click()
+        driver.find_element(
+            *MainPageLocators.LOGO
+        ).click()
 
-    assert driver.current_url == BASE_URL + "/"
+        assert driver.current_url == BASE_URL + "/"
 
+    def test_open_buns_section(self, driver):
 
-def test_open_buns_section(driver):
+        driver.get(BASE_URL)
 
-    driver.get(BASE_URL)
+        driver.find_element(
+            *MainPageLocators.BUNS_TAB
+        ).click()
 
-    driver.find_element(
-        *MainPageLocators.BUNS_TAB
-    ).click()
+        assert driver.find_element(
+            *MainPageLocators.CURRENT_BUNS_TAB
+        ).is_displayed()
 
-    assert True
+    def test_open_sauces_section(self, driver):
 
+        driver.get(BASE_URL)
 
-def test_open_sauces_section(driver):
+        driver.find_element(
+            *MainPageLocators.FILLINGS_TAB
+        ).click()
 
-    driver.get(BASE_URL)
+        driver.find_element(
+            *MainPageLocators.SAUCES_TAB
+        ).click()
 
-    driver.find_element(
-        *MainPageLocators.SAUCES_TAB
-    ).click()
+        assert driver.find_element(
+            *MainPageLocators.CURRENT_SAUCES_TAB
+        ).is_displayed()
 
-    assert True
+    def test_open_fillings_section(self, driver):
 
+        driver.get(BASE_URL)
 
-def test_open_fillings_section(driver):
+        driver.find_element(
+            *MainPageLocators.FILLINGS_TAB
+        ).click()
 
-    driver.get(BASE_URL)
-
-    driver.find_element(
-        *MainPageLocators.FILLINGS_TAB
-    ).click()
-
-    assert True
+        assert driver.find_element(
+            *MainPageLocators.CURRENT_FILLINGS_TAB
+        ).is_displayed()

@@ -1,16 +1,16 @@
 from data.urls import BASE_URL
 
-from locators.locators import (
-    MainPageLocators
-)
+from locators.locators import MainPageLocators
 
 
-def test_open_personal_account(driver):
+class TestPersonalAccount:
 
-    driver.get(BASE_URL)
+    def test_open_personal_account(self, driver):
 
-    driver.find_element(
-        *MainPageLocators.PERSONAL_ACCOUNT_BUTTON
-    ).click()
+        driver.get(BASE_URL)
 
-    assert "login" in driver.current_url
+        driver.find_element(
+            *MainPageLocators.PERSONAL_ACCOUNT_BUTTON
+        ).click()
+
+        assert "login" in driver.current_url

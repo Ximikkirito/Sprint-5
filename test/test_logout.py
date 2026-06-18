@@ -1,16 +1,16 @@
 from data.urls import ACCOUNT_URL
 
-from locators.locators import (
-    AccountPageLocators
-)
+from locators.locators import AccountPageLocators
 
 
-def test_logout(driver):
+class TestLogout:
 
-    driver.get(ACCOUNT_URL)
+    def test_logout(self, driver):
 
-    driver.find_element(
-        *AccountPageLocators.LOGOUT_BUTTON
-    ).click()
+        driver.get(ACCOUNT_URL)
 
-    assert "login" in driver.current_url
+        driver.find_element(
+            *AccountPageLocators.LOGOUT_BUTTON
+        ).click()
+
+        assert "login" in driver.current_url
