@@ -1,81 +1,72 @@
 from data.urls import BASE_URL
 
-from locators.locators import (
-    MainPageLocators,
-    LoginPageLocators
-)
-
-EMAIL = "your_test_user@mail.ru"
-PASSWORD = "Password123"
+from locators.locators import MainPageLocators
 
 
-def login(driver):
-    """Авторизация пользователя с валидными учетными данными."""
+class TestConstructor:
+    """Проверки раздела Конструктор."""
 
-    driver.find_element(
-        *LoginPageLocators.EMAIL_INPUT
-    ).send_keys(EMAIL)
-
-    driver.find_element(
-        *LoginPageLocators.PASSWORD_INPUT
-    ).send_keys(PASSWORD)
-
-    driver.find_element(
-        *LoginPageLocators.LOGIN_SUBMIT_BUTTON
-    ).click()
-
-
-class TestLogin:
-    """Проверки авторизации пользователя."""
-
-    def test_login_from_main_page(self, driver):
-        """Вход через кнопку «Войти в аккаунт» на главной странице."""
+    def test_open_constructor_button(self, driver):
+        """Переход в раздел Конструктор по кнопке."""
 
         driver.get(BASE_URL)
 
         driver.find_element(
-            *MainPageLocators.LOGIN_BUTTON
+            *MainPageLocators.CONSTRUCTOR_BUTTON
         ).click()
 
-        login(driver)
+        assert driver.current_url == BASE_URL + "/"
 
-        assert "login" not in driver.current_url
-
-    def test_login_from_personal_account(self, driver):
-        """Вход через кнопку «Личный кабинет»."""
+    def test_open_constructor_logo(self, driver):
+        """Переход в Конструктор по логотипу Stellar Burgers."""
 
         driver.get(BASE_URL)
 
         driver.find_element(
-            *MainPageLocators.PERSONAL_ACCOUNT_BUTTON
+            *MainPageLocators.LOGO
         ).click()
 
-        login(driver)
+        assert driver.current_url == BASE_URL + "/"
 
-        assert "login" not in driver.current_url
+    def test_open_buns_section(self, driver):
+        """Открытие вкладки Булки."""
 
-    def test_login_from_register_page(self, driver):
-        """Вход через ссылку со страницы регистрации."""
-
-        driver.get(f"{BASE_URL}/register")
+        driver.get(BASE_URL)
 
         driver.find_element(
-            *LoginPageLocators.REGISTER_LINK
+            *MainPageLocators.BUNS_TAB
         ).click()
 
-        login(driver)
+        assert driver.find_element(
+            *MainPageLocators.CURRENT_BUNS_TAB
+        ).is_displayed()
 
-        assert "login" not in driver.current_url
+    def test_open_sauces_section(self, driver):
+        """Открытие вкладки Соусы."""
 
-    def test_login_from_forgot_password_page(self, driver):
-        """Вход через ссылку со страницы восстановления пароля."""
-
-        driver.get(f"{BASE_URL}/forgot-password")
+        driver.get(BASE_URL)
 
         driver.find_element(
-            *LoginPageLocators.FORGOT_PASSWORD_LINK
+            *MainPageLocators.FILLINGS_TAB
         ).click()
 
-        login(driver)
+        driver.find_element(
+            *MainPageLocators.SAUCES_TAB
+        ).click()
 
-        assert "login" not in driver.current_url
+        assert driver.find_element(
+            *MainPageLocators.CURRENT_SAUCES_TAB
+        ).is_displayed()
+
+    def test_open_fillings_section(self, driver):
+        """Открытие вкладки Начинки."""
+
+        driver.get(BASE_URL)
+
+        driver.find_element(
+            *MainPageLocators.FILLINGS_TAB
+        ).click()
+
+        assert driver.find_element(
+            *MainPageLocators.CURRENT_FILLINGS_TAB
+        ).is_displayed()
