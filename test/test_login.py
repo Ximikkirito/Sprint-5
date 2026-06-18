@@ -1,5 +1,4 @@
 from data.urls import BASE_URL
-
 from locators.locators import (
     MainPageLocators,
     LoginPageLocators
@@ -8,7 +7,9 @@ from locators.locators import (
 EMAIL = "your_test_user@mail.ru"
 PASSWORD = "Password123"
 
+
 def login(driver):
+    """Авторизация пользователя с валидными данными."""
 
     driver.find_element(
         *LoginPageLocators.EMAIL_INPUT
@@ -24,8 +25,10 @@ def login(driver):
 
 
 class TestLogin:
+    """Проверки авторизации пользователя."""
 
     def test_login_from_main_page(self, driver):
+        """Вход через кнопку «Войти в аккаунт» на главной странице."""
 
         driver.get(BASE_URL)
 
@@ -38,6 +41,7 @@ class TestLogin:
         assert "login" not in driver.current_url
 
     def test_login_from_personal_account(self, driver):
+        """Вход через кнопку «Личный кабинет»."""
 
         driver.get(BASE_URL)
 
@@ -50,6 +54,7 @@ class TestLogin:
         assert "login" not in driver.current_url
 
     def test_login_from_register_page(self, driver):
+        """Вход через ссылку со страницы регистрации."""
 
         driver.get(f"{BASE_URL}/register")
 
@@ -62,6 +67,7 @@ class TestLogin:
         assert "login" not in driver.current_url
 
     def test_login_from_forgot_password_page(self, driver):
+        """Вход через ссылку со страницы восстановления пароля."""
 
         driver.get(f"{BASE_URL}/forgot-password")
 

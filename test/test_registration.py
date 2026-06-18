@@ -5,8 +5,10 @@ from locators.locators import RegisterPageLocators
 
 
 class TestRegistration:
+    """Проверки регистрации нового пользователя."""
 
     def test_success_registration(self, driver):
+        """Успешная регистрация пользователя с валидными данными."""
 
         driver.get(REGISTER_URL)
 
@@ -29,6 +31,7 @@ class TestRegistration:
         assert "login" in driver.current_url
 
     def test_registration_invalid_password(self, driver):
+        """Проверка отображения ошибки при пароле короче 6 символов."""
 
         driver.get(REGISTER_URL)
 
